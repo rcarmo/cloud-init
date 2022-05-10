@@ -16,7 +16,7 @@ locale: en_US.UTF-8
 timezone: Europe/Lisbon
 
 packages:
-  - avahi
+  - avahi-daemon
   - htop
   - vim
   - curl
