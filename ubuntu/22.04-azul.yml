@@ -1,0 +1,33 @@
+#cloud-config
+
+# This profile sets up an Ubuntu 22.04 instance with the Azul JDK 18
+
+apt_sources:
+  azul:
+    source: "deb [ arch=amd64,arm64 ] https://repos.azul.com/zulu/deb/ stable main"
+    filename: zulu-openjdk.list
+    keyid: "0xB1998361219BD9C9"
+
+package_update: true
+package_upgrade: true
+package_reboot_if_required: true
+
+locale: en_US.UTF-8
+timezone: Europe/Lisbon
+
+packages:
+  - avahi
+  - htop
+  - vim
+  - curl
+  - wget
+  - sudo
+  - net-tools
+  # Backups
+  - restic
+  # This includes some dev packages for common deployments
+  - sqlite3
+  - zulu18-jdk-headless
+  
+runcmd:
+  - apt-get -qq -y purge snapd

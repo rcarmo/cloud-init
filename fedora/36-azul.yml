@@ -1,0 +1,41 @@
+#cloud-config
+
+# This profile sets up a Fedora 36 instance with the Azul JDK 18
+
+yum_repos:
+  zulu-openjdk:
+    name: zulu-openjdk
+    baseurl: https://repos.azul.com/zulu/rpm
+    type: rpm-md
+    skip_if_unavailable: true
+    gpgcheck: true
+    gpgkey: https://assets.azul.com/files/0xB1998361219BD9C9.txt
+    enabled_metadata: 1
+    enabled: 1
+    gpgcheck: 1
+    protect: 1
+
+package_update: true
+package_upgrade: true
+package_reboot_if_required: true
+
+locale: en_US.UTF-8
+timezone: Europe/Lisbon
+
+packages:
+  - avahi
+  - htop
+  - vim
+  - curl
+  - wget
+  - sudo
+  - net-tools
+  # Backups
+  - restic
+  # This includes some dev packages for common deployments
+  - make
+  - sqlite3
+  - zulu18-jdk-headless
+
+  runcmd:
+    - echo "BADGER"
